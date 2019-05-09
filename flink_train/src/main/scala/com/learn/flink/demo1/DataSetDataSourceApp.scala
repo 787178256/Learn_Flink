@@ -1,6 +1,7 @@
 package com.learn.flink.demo1
 
 import org.apache.flink.api.scala.ExecutionEnvironment
+import org.apache.flink.configuration.Configuration
 
 /**
   * Created by kimvra on 2019-05-09
@@ -10,9 +11,19 @@ object DataSetDataSourceApp {
     val env = ExecutionEnvironment.getExecutionEnvironment
     //fromCollection(env)
     //textFile(env)
-    csvFile(env)
+    //csvFile(env)
+    readRecursiveTextFile(env)
   }
 
+  def readRecursiveTextFile(env: ExecutionEnvironment) = {
+    val path = "file:///Users/kimvra/IdeaProjects/imooc/data/nested"
+    env.readTextFile(path).print()
+    println("---------------")
+    val parameters = new Configuration()
+    parameters.setBoolean("recursive.file.enumeration", true)
+
+    env.readTextFile(path).withParameters(parameters).print()
+  }
   def csvFile(env: ExecutionEnvironment) = {
     val path = "file:///Users/kimvra/IdeaProjects/imooc/data/sales.csv"
     import org.apache.flink.api.scala._

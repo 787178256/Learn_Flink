@@ -1,6 +1,7 @@
 package com.learn.flink.demo1;
 
 import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.configuration.Configuration;
 
 import java.util.Arrays;
 
@@ -12,7 +13,15 @@ public class DataSetDataSourceJavaApp {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         //fromCollection(env);
         //textFile(env);
-        readCsvFile(env);
+        //readCsvFile(env);
+        readRecursiveFile(env);
+    }
+
+    private static void readRecursiveFile(ExecutionEnvironment env) throws Exception{
+        String path = "file:///Users/kimvra/IdeaProjects/imooc/data/nested";
+        Configuration parameters = new Configuration();
+        parameters.setBoolean("recursive.file.enumeration", true);
+        env.readTextFile(path).withParameters(parameters).print();
     }
 
     private static void readCsvFile(ExecutionEnvironment env) throws Exception{
