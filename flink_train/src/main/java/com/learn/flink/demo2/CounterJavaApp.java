@@ -11,6 +11,7 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.core.fs.FileSystem;
 
 /**
+ * 步骤：定义计数器、注册计数器、获取计数器
  * Created by kimvra on 2019-05-09
  */
 public class CounterJavaApp {
