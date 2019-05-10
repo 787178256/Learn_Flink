@@ -5,7 +5,7 @@ import org.apache.flink.streaming.api.functions.source.ParallelSourceFunction;
 /**
  * Created by kimvra on 2019-05-10
  */
-public class CustomParallelSourceJava implements ParallelSourceFunction {
+public class CustomParallelSourceJava implements ParallelSourceFunction<Long> {
 
     private boolean isRunning = true;
 

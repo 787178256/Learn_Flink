@@ -15,7 +15,7 @@ public class DataStreamSourceJavaApp {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         parallelSourceFunction(env);
-        nonParallelSourceFunction(env);
+        //nonParallelSourceFunction(env);
         env.execute("StreamJob");
     }
 

@@ -24,6 +24,7 @@ object DataSetDataSourceApp {
 
     env.readTextFile(path).withParameters(parameters).print()
   }
+
   def csvFile(env: ExecutionEnvironment) = {
     val path = "file:///Users/kimvra/IdeaProjects/imooc/data/sales.csv"
     import org.apache.flink.api.scala._
@@ -32,6 +33,7 @@ object DataSetDataSourceApp {
     env.readCsvFile[Person](path, ignoreFirstLine = true).print()
     env.readCsvFile[Sale](path, ignoreFirstLine = true, pojoFields = Array("transactionId", "customerId", "itemId", "amountPaid")).print()
   }
+
   def textFile(env: ExecutionEnvironment) = {
     val path = "file:///Users/kimvra/IdeaProjects/imooc/data/hello.txt"
     env.readTextFile(path).print()
