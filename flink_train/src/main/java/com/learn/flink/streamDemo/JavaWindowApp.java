@@ -1,6 +1,7 @@
-package com.learn.flink;
+package com.learn.flink.streamDemo;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -25,7 +26,7 @@ public class JavaWindowApp {
                     }
                 }
             }
-        }).keyBy(0).timeWindow(Time.seconds(5)).sum(1).print().setParallelism(1);
+        }).keyBy(0).timeWindow(Time.seconds(10), Time.seconds(5)).sum(1).print().setParallelism(1);
 
         env.execute("JavaWindowApp");
     }
