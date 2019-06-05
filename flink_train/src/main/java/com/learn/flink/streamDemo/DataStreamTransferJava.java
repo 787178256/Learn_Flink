@@ -22,19 +22,19 @@ public class DataStreamTransferJava {
     }
 
     private static void splitFunction(StreamExecutionEnvironment env) {
-        DataStreamSource<Long> dataStreamSource = env.addSource(new CustomParallelSourceJava());
-        dataStreamSource.split(new OutputSelector<Long>() {
-            List<String> list = new ArrayList<>();
-            @Override
-            public Iterable<String> select(Long value) {
-                if (value % 2 == 0) {
-                    list.add("even");
-                } else {
-                    list.add("odd");
-                }
-                return list;
-            }
-        }).select("even").print().setParallelism(1);
+//        DataStreamSource<Long> dataStreamSource = env.addSource(new CustomParallelSourceJava());
+//        dataStreamSource.split(new OutputSelector<Long>() {
+//            List<String> list = new ArrayList<>();
+//            @Override
+//            public Iterable<String> select(Long value) {
+//                if (value % 2 == 0) {
+//                    list.add("even");
+//                } else {
+//                    list.add("odd");
+//                }
+//                return list;
+//            }
+//        }).select("even").print().setParallelism(1);
     }
 
     private static void filterFunction(StreamExecutionEnvironment env) {
@@ -54,9 +54,8 @@ public class DataStreamTransferJava {
     }
 
     private static void unionFunction(StreamExecutionEnvironment env) {
-        DataStreamSource<Long> dataStreamSource = env.addSource(new CustomParallelSourceJava());
-        DataStreamSource<Long> dataStreamSource1 = env.addSource(new CustomParallelSourceJava());
-
-        dataStreamSource.union(dataStreamSource1).print().setParallelism(1);
+        //DataStreamSource<Long> dataStreamSource = env.addSource(new CustomParallelSourceJava());
+        //DataStreamSource<Long> dataStreamSource1 = env.addSource(new CustomParallelSourceJava());
+//dataStreamSource.union(dataStreamSource1).print().setParallelism(1);
     }
 }

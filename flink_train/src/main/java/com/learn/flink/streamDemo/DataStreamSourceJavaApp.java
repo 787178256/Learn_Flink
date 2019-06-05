@@ -2,6 +2,7 @@ package com.learn.flink.streamDemo;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.time.Time;
@@ -25,7 +26,7 @@ public class DataStreamSourceJavaApp {
     }
 
     private static void parallelSourceFunction(StreamExecutionEnvironment env) {
-        DataStreamSource dataStreamSource = env.addSource(new CustomParallelSourceJava()).setParallelism(2);
+        DataStreamSource dataStreamSource = env.addSource(new CustomParallelSourceJava()).setParallelism(1);
         dataStreamSource.print();
     }
 
@@ -42,6 +43,5 @@ public class DataStreamSourceJavaApp {
                 }
             }
         }).keyBy(1).timeWindow(Time.seconds(5)).sum(1).print().setParallelism(1);
-
     }
 }
